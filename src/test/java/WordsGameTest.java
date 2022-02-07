@@ -9,8 +9,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyShort;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -19,8 +17,10 @@ class WordsGameTest {
     private final static String filePath = "src\\wordsEasy.txt";
     @Mock
     private Downloader downloaderTxt;
+
     @Mock
     private RandomNumber randomNumber;
+
     private WordsGame wordsGame;
 
     @BeforeEach
@@ -31,15 +31,8 @@ class WordsGameTest {
                 "stone", "kamień",
                 "castle", "zamek"));
 
-        when(randomNumber.getRandomNumber(anyShort())).thenReturn(1);
-        when(randomNumber.getRandomNumber(anyShort())).thenReturn(0);
-        when(randomNumber.getRandomNumber(anyShort())).thenReturn(3);
-        when(randomNumber.getRandomNumber(anyShort())).thenReturn(2);
-        wordsGame.setProportionOfGame(4);
-
-        wordsGame = new WordsGame(downloaderTxt, randomNumber);
-
-
+        when(randomNumber.getRandomNumber(4)).thenReturn(1, 0, 3, 2);
+        wordsGame = new WordsGame(downloaderTxt, randomNumber, 4);
     }
 
 
@@ -62,9 +55,6 @@ class WordsGameTest {
                 new Word("apple", "jabłko", Point.EASY),
                 new Word("castle", "zamek", Point.EASY),
                 new Word("stone", "kamień", Point.EASY));
-
-
-
 
         assertTrue(expectedWords.containsAll(wordsGame.getRandomWords()));
 
