@@ -43,6 +43,7 @@ public class WordsGame {
             Word tmp = this.words.get(randomNumber.getRandomNumber(proportionOfGame - i));
             Word word = new Word(tmp.getPl(), tmp.getEng(), tmp.getValue());
             words.add(word);
+            this.words.remove(tmp);
         }
         return words;
     }

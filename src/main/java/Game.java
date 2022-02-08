@@ -1,5 +1,3 @@
-import javax.imageio.IIOException;
-import java.io.IOException;
 import java.util.Objects;
 
 public class Game {
@@ -8,17 +6,18 @@ public class Game {
 
     public Game(WordsGame wordsGame) {
         this.wordsGame = wordsGame;
-        currentWord = getWord(0);
+        setNewCurrentWord();
     }
 
-    private Word getWord(int index){
-        Word wordFromGame = wordsGame.getRandomWords().get(index);
-        Word word = new Word(wordFromGame.getEng(),wordFromGame.getPl(),wordFromGame.getValue());
-        wordsGame.getRandomWords().remove(wordFromGame);
-        return word;
+    public void setNewCurrentWord() {
+        Word wordFromGame = wordsGame.getRandomWords().get(0);
+        Word word = new Word(wordFromGame.getEng(), wordFromGame.getPl(), wordFromGame.getValue());
+        currentWord = word;
     }
 
-    public Word getCurrentWord(){ return currentWord;}
+    public Word getCurrentWord() {
+        return currentWord;
+    }
 
     public boolean isGoodAnswer(String answer) {
         if (Objects.equals(answer, currentWord.getEng())) {
@@ -27,7 +26,4 @@ public class Game {
             return false;
         }
     }
-
-
-
 }
