@@ -18,10 +18,6 @@ public class Game {
         return word;
     }
 
-//    public void setNewCurrentWord(){
-//        currentWord = getWord(0);
-//    }
-
     public Word getCurrentWord(){ return currentWord;}
 
     public boolean isGoodAnswer(String answer) {

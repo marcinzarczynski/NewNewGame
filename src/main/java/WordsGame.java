@@ -8,7 +8,7 @@ public class WordsGame {
     private final Downloader downloader;
     private final static String filePath = "src\\wordsEasy.txt";
     private final List<Word> words;
-    private final List<Word> randomWords;
+    List<Word> randomWords;
     int proportionOfGame;
     private final RandomNumber randomNumber;
 
