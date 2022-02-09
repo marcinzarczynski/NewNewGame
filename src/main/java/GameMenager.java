@@ -31,6 +31,7 @@ public class GameMenager {
                     wordsGame.randomWords.size() + " słówek");
             return true;
         }
+        points--;
         System.out.println("Błędna odpowiedź, przechodzisz do następnego słówka");
         return false;
     }
@@ -45,11 +46,10 @@ public class GameMenager {
             this.answer = scanner.nextLine();
             boolean checkedAnswer = checkAnswer(answer);
             if (checkedAnswer) {
-                wordsGame.getRandomWords().remove(0);
-                game.setNewCurrentWord();
+                game.setNewCurrentWordAfterGoodAnswer();
                 System.out.println("Twoja liczba punktów: " + getPoints());
             } else {
-                game.setNewCurrentWord();
+                game.setNewCurrentWordAfterBadAnswer();
                 System.out.println("Twoja liczba punktów: " + getPoints());
             }
         }

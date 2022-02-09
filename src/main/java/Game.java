@@ -4,15 +4,24 @@ public class Game {
     WordsGame wordsGame;
     private Word currentWord;
 
+
     public Game(WordsGame wordsGame) {
         this.wordsGame = wordsGame;
-        setNewCurrentWord();
+        setNewCurrentWordAfterGoodAnswer();
+
     }
 
-    public void setNewCurrentWord() {
-        Word wordFromGame = wordsGame.getRandomWords().get(0);
-        Word word = new Word(wordFromGame.getEng(), wordFromGame.getPl(), wordFromGame.getValue());
-        currentWord = word;
+    public void setNewCurrentWordAfterGoodAnswer() {
+        RandomNumber randomNumber = new RandomNumber();
+        int randomNumberForGame = randomNumber.getRandomNumber(wordsGame.randomWords.size());
+        Word wordFromGame = wordsGame.getRandomWords().get(randomNumberForGame);
+        currentWord = new Word(wordFromGame.getEng(), wordFromGame.getPl(), wordFromGame.getValue());
+        wordsGame.randomWords.remove(randomNumberForGame);
+    }
+    public void setNewCurrentWordAfterBadAnswer() {
+        RandomNumber randomNumber = new RandomNumber();
+        Word wordFromGame = wordsGame.getRandomWords().get(randomNumber.getRandomNumber(wordsGame.randomWords.size()));
+        currentWord = new Word(wordFromGame.getEng(), wordFromGame.getPl(), wordFromGame.getValue());
     }
 
     public Word getCurrentWord() {

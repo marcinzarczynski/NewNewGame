@@ -26,6 +26,7 @@ public class WordsGame {
 
     public List<Word> getRandomWords() {
         return this.randomWords;
+
     }
 
     private List<Word> createWords(Point point, Map<String, String> wordsMap) {
